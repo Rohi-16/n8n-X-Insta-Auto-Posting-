@@ -1,0 +1,119 @@
+{
+  "name": "Automate Posting",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1Y_UUeV7I7Ss_ezJPG4_mmYqljAmzEDdr6HPxOhqNl7w",
+          "mode": "list",
+          "cachedResultName": "Post ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y_UUeV7I7Ss_ezJPG4_mmYqljAmzEDdr6HPxOhqNl7w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y_UUeV7I7Ss_ezJPG4_mmYqljAmzEDdr6HPxOhqNl7w/edit#gid=0"
+        },
+        "includeInOutput": "both",
+        "options": {
+          "columnsToWatch": "={{ [\"👋 Hello\"] }}"
+        }
+      },
+      "id": "27ecb3ad-ced6-4772-b097-4c78ec39109c",
+      "name": "Google Sheets Trigger",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        704
+      ],
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "dBzOd10vIN0vfTHq",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json['👋 Hello'] }}",
+        "additionalFields": {}
+      },
+      "id": "8ad31e36-aee9-4391-b942-9bd954529914",
+      "name": "Post to X",
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        224,
+        608
+      ],
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "dyMdA7kcTLOOvvBs",
+          "name": "X account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "person": "j9B5IaBF8Q",
+        "text": "={{ $json['👋 Hello'] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        224,
+        800
+      ],
+      "id": "1d0afcc1-452a-42b9-b0af-40243a69cbed",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "QxfsrlJi3b56MZ2s",
+          "name": "LinkedIn account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Post to X",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "89cf1126-e27e-48da-9812-9165c3e1b7f3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "112d5ef8c6c9474f9325a2c9b521d5c4e01c3eb2b16be54c59b7b2ed5845e607"
+  },
+  "id": "ztoP6z9ZSXwfrvQh",
+  "tags": []
+}
